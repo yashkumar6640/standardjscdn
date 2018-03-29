@@ -1,11 +1,8 @@
 (function() {
   function initApplication() {
-    // var standard = {};
-    // window.std = standard;
-
+    
     var instance;
     var stdlib = {};
-    // window.standard = stdlib;
     stdlib = {
       components: {},
       templates: {},
@@ -13,10 +10,6 @@
         js_file_location: "app/components/",
         html_file_location: "app/components/",
         css_file_location: "app/components"
-      },
-
-      test: function() {
-        alert("Inside standardjs test function");
       },
 
       loadHtmlFile: function(html_url, element, page, selector) {
@@ -43,12 +36,9 @@
 
       loadJsFile: function(js_url, element, page, selector) {
         var comp_loaded_function_called = false;
+        var js_elem;
         scriptSelector = `script[src="${js_url}"]`;
-        // if (!document.querySelector(scriptSelector)) {
-        //   return true;
-        // }
-        // if (!document.querySelector(scriptSelector)) {
-        var js_elem = document.createElement("script");
+        js_elem = document.createElement("script");
         js_elem.type = "application/javascript";
         js_elem.src = js_url;
         document.body.appendChild(js_elem);
@@ -59,7 +49,6 @@
           comp_loaded_function_called = true;
           return true;
         };
-        // }
       },
 
       loadScriptFiles: function(
@@ -80,21 +69,16 @@
         js_script_selector = `script[src="${js_url}"]`;
         css_script_selector = `script[src="${css_url}"]`;
 
-        // if (!document.querySelector(js_script_selector)) {
         comp_loaded_function_called = this.loadJsFile(
           js_url,
           target_element,
           page,
           selector
         );
-        // }
 
         if (!document.querySelector(css_script_selector) && css_url) {
           this.loadCssFile(css_url, target_element, page, selector);
         }
-        // if (comp_loaded_function_called) {
-        //   standard.loadComponent(element, page, selector);
-        // }
 
         if (!comp_loaded_function_called) {
           this.replaceData(target_element, page);
@@ -108,13 +92,9 @@
         var js_url = this.utility.js_file_location + page + "/" + page + ".js";
         console.log(js_url);
         this.loadScriptFiles(target, page, selector, html_url, js_url);
-        // this.loadScriptFiles(target, page, selector, html_url, js_url, css_url);
       },
 
       passData: function(to_child_component, data) {
-        // if(!this.components[to_child_component]){
-        //   this.storeComponent(to_child_component, data)
-        // }
         var comp_data = this.components[to_child_component].component_data.data;
         for (let i in data) {
           // if (data.hasOwnProperty(i))
@@ -249,23 +229,7 @@
 
             if (
               component_data_array.data[match_found]
-              // component_data_array.data[localData] &&
-              // (typeof component_data_array.data[localData] === "string" ||
-              //   typeof component_data_array.data[localData] === "number")
             ) {
-              console.log(
-                "inside replace",
-                array_storing_matches[0],
-                component_data_array.data[match_found]
-              );
-              // innerHTML_str = innerHTML_str.replace(
-              //   array_storing_matches[0],
-              //   "<span standard-id=" +
-              //     array_storing_matches[1] +
-              //     ">" +
-              //     component_data_array.data[match_found] +
-              //     "</span>"
-              // );
               innerHTML_str = innerHTML_str.replace(
                 array_storing_matches[0],
                 "<span std-id-" +
@@ -311,15 +275,6 @@
 
     return stdlib;
 
-    // return {
-    //   getInstance: function() {
-    //     if (!instance) {
-    //       instance = createInstance();
-    //     }
-    //     return instance;
-    //   }
-    //   // standard
-    // };
   }
   document.onreadystatechange = function(e) {
     if (document.readyState === "complete") {
