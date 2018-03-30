@@ -1,4 +1,4 @@
-# standardjs
+# standard.js
 A CDN for standardjs(A Javascript framework)
 <hr>
 <h2>Application Structure:</h3><br>
