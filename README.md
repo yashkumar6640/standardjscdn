@@ -9,6 +9,10 @@ A CDN for standardjs(A Javascript framework)
                   /home.js
                   /home.html
                   /home.css
+              /view
+                  /view.js
+                  /view.html
+                  /view.css
 /index.html
 </pre>
 <br>
